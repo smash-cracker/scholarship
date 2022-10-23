@@ -1,16 +1,19 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/auth_context';
 
 function Login() {
     const [error, setError] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const naviage = useNavigate();
+    const naviage = useNavigate()
+
+    const {dispatch} = useContext(AuthContext)
 
     const handleLogin = (e)=> {
         e.preventDefault();
@@ -18,8 +21,9 @@ function Login() {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user);
+    dispatch({type:"LOGIN",payload:user})
     naviage("/")
+    
   })
   .catch((error) => {
     const errorCode = error.code;

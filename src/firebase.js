@@ -1,5 +1,7 @@
 import { getAuth } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
+import { setDoc, doc, getFirestore } from 'firebase/firestore';
+import { getStorage } from "firebase/storage";
 require('firebase/auth');
 
 const app = firebase.initializeApp({
@@ -13,4 +15,6 @@ const app = firebase.initializeApp({
 })
 
 export default app;
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 export const auth = getAuth();
