@@ -78,6 +78,8 @@ uploadTask.on('state_changed',
                 <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
                 </div>
             ))}
+            
+
             <button disabled={percentage!=null && percentage<100} type="submit">add scholarship</button>
         </form>
         </>

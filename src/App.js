@@ -6,8 +6,9 @@ import Signup from './authentication/signup';
 import { AuthContext } from "./context/auth_context";
 import FetchScholarships from "./data/fetch_scholarships";
 import UpdateScholarship from "./data/update_scholarship";
-import { userInputs } from "./source/form_source";
+import { userDetails, userInputs } from "./source/form_source";
 import New from "./data/new_scholarship";
+import Details from "./authentication/signup";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -36,8 +37,12 @@ function App() {
       <New inputs={userInputs} title="Add New User" />
       </RequiredAuth>
       }/>
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path='/viewScholarships' element={<FetchScholarships/>}/>
+      <Route path='/signup' element={<Details inputs={userDetails} />}/>
+      <Route path='/viewScholarships' element={
+       <RequiredAuth>
+      <FetchScholarships/>
+      </RequiredAuth>
+      }/>
       </Routes>
     </Router>
     </div>
