@@ -5,7 +5,7 @@ import { MdAccountCircle } from "react-icons/md";
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { signOut } from "firebase/auth";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Popover from 'react-bootstrap/Popover';
 import { auth } from '../firebase';
 
@@ -14,7 +14,7 @@ function NavBar() {
     function signout() {
         signOut(auth).then(() => {
             localStorage.removeItem('user');
-            <Navigate to={"/login"}/>
+            <Navigate to={"/login"}/>;
           }).catch((error) => {
             // An error happened.
           });
@@ -26,7 +26,7 @@ function NavBar() {
         <nav>
             <ul className='nav_links'>
                 <li><a href='#'>Home</a></li>
-                <li><a href='#'>Scholarships</a></li>
+                <li><a href='#'><Link to="/viewScholarship">Scholarships</Link></a></li>
                 <li><a href='#'>About</a></li>
             </ul>
         </nav>
@@ -39,13 +39,14 @@ function NavBar() {
             <Popover id={`popover-positioned-bottom`}>
               {/* <Popover.Header as="h3">{`Popover bottom`}</Popover.Header> */}
               <Popover.Body>
-                <strong>profile</strong> <br></br>
-              <button onClick={signout}>log out</button>
+                <strong>Profile</strong> <br></br>
+              <a onClick={signout}>Log out</a>
+              <Link to="/eligibleScholarships">Eligible scholarships</Link>
               </Popover.Body>
             </Popover>
           }
         >
-          <Button variant="secondary">Account</Button>
+          <a variant="secondary">Account</a>
         </OverlayTrigger>
     </>
     </header>

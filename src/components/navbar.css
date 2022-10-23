@@ -16,14 +16,9 @@ a {
     color: rgb(190, 190, 190);
 }
 
-img {
-    height: 50px;
-    width: 50px;
-}
-
 header {
+    vertical-align: middle;
     border-radius: 10px;
-    padding: 10px 10px;
     margin: 30px 10px;
     background-color: rgb(233, 233, 233);
     display: flex;
@@ -36,6 +31,7 @@ header {
 }
 
 .nav_links {
+    align-items: center;
     list-style: none;
 }
 

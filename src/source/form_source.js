@@ -5,17 +5,17 @@ export const userInputs = [
         placeholder: "scholarshipName",
     },
     {
-        id:"Stripend",
-        type: "text",
+        id:"stripend",
+        type: "number",
         placeholder: "Stripend",
     },
     {
-        id:"Max annual income",
-        type: "text",
+        id:"maxAnnualIncome",
+        type: "number",
         placeholder: "Max annual income",
     },
     {
-        id:"Category",
+        id:"category",
         type: "text",
         placeholder: "category",
     },
@@ -29,12 +29,17 @@ export const userDetails = [
     },
     {
         id:"plusTwo",
-        type: "text",
+        type: "number",
         placeholder: "Plus two marks(%)",
     },
     {
         id:"tenth",
-        type: "text",
+        type: "number",
         placeholder: "Tenth marks(%)",
+    },
+    {
+        id:"annualIncome",
+        type: "number",
+        placeholder: "Annual Income",
     },
 ];
