@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useContext } from "react";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Home from './authentication/home';
@@ -9,6 +10,7 @@ import UpdateScholarship from "./data/update_scholarship";
 import { userDetails, userInputs } from "./source/form_source";
 import New from "./data/new_scholarship";
 import Details from "./authentication/signup";
+
 
 function App() {
   const {currentUser} = useContext(AuthContext)

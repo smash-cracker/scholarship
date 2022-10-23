@@ -2,9 +2,10 @@ import { v4 as uuid } from 'uuid';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import Form from 'react-bootstrap/Form';
 import { db, storage } from "../firebase";
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
+import { AuthContext } from '../context/auth_context';
 
 const Details = ({inputs})  => {
 
@@ -12,6 +13,8 @@ const Details = ({inputs})  => {
       const [error, setError] = useState(false);
       const [email, setEmail] = useState("");
       const [password, setPassword] = useState("");
+      const [uid, setuid] = useState();
+      const {currentUser} = useContext(AuthContext)
   
   
       const handleInput = (e) => {
@@ -23,13 +26,17 @@ const Details = ({inputs})  => {
         console.log(data);
     }
   
-      const handleSignup = (e)=> {
+      const handleSignup = async (e)=> {
           e.preventDefault();
-          createUserWithEmailAndPassword(auth, email, password)
+          await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      handleAdd();
+      setDoc(doc(db, "users", user.uid), {
+        email : email,
+          ...data,
+          timestamp: serverTimestamp(),
+        });
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -37,18 +44,7 @@ const Details = ({inputs})  => {
       // ..
     });
       }
-
-      const handleAdd = async (e)  => {
-        const unique_id = uuid();
-        await setDoc(doc(db, "users", unique_id), {
-          email : email,
-            ...data,
-            timestamp: serverTimestamp(),
-          });
-          
-    }
-  
-    return (
+      return (
       <Form onSubmit={handleSignup}>
         <input type={"text"} onChange={e=>setEmail(e.target.value)}></input>
         <input type={"password"} onChange={e=>setPassword(e.target.value)}></input>

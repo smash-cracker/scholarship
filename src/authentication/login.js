@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth_context';
+import NavBar from '../components/navbar';
 
 function Login() {
     const [error, setError] = useState(false);
@@ -33,11 +34,14 @@ function Login() {
     }
 
   return (
+    <>
+    <NavBar/>
     <Form onSubmit={handleLogin}>
       <input type={"text"} onChange={e=>setEmail(e.target.value)}></input>
       <input type={"password"} onChange={e=>setPassword(e.target.value)}></input>
       <button type='submit'>Log in</button>
     </Form>
+    </>
   )
 }
 
