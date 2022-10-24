@@ -1,5 +1,4 @@
 import React from 'react'
-import './navbar.css'
 import icon from './navicon.png'
 import { MdAccountCircle } from "react-icons/md";
 import Button from 'react-bootstrap/Button';
@@ -8,6 +7,7 @@ import { signOut } from "firebase/auth";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Popover from 'react-bootstrap/Popover';
 import { auth } from '../firebase';
+import './navbar.css'
 
 function NavBar() {
 
@@ -21,17 +21,15 @@ function NavBar() {
           
     }
   return (
-    <header>
-        <img src={icon} className='logo' alt='logo'></img>
-        <nav>
+    <div id='navheader'>
+        <nav id='headernav'>
+        <div id='logotext'>SCHOLARSHIPS</div>
             <ul className='nav_links'>
                 <li><a href='#'>Home</a></li>
                 <li><a href='#'><Link to="/viewScholarship">Scholarships</Link></a></li>
                 <li><a href='#'>About</a></li>
             </ul>
-        </nav>
-        <>
-        <OverlayTrigger
+            <OverlayTrigger
           trigger="click"
           key="bottom"
           placement="bottom"
@@ -48,8 +46,9 @@ function NavBar() {
         >
           <a variant="secondary">Account</a>
         </OverlayTrigger>
-    </>
-    </header>
+
+        </nav>
+    </div>
   )
 }
 

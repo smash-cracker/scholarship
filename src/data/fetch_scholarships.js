@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
 import ListGroup from "react-bootstrap/ListGroup";
 import { db } from "../firebase";
+import './fetchscholarships.css'
 
 function FetchScholarships() {
   const [scholarships, setScholarships] = useState([]);
@@ -17,18 +18,22 @@ function FetchScholarships() {
     getScholarships();
   }, []);
   return (
-    <div>
+    <div id="viewallfest">
+
       <NavBar />
       <ListGroup variant="flush">
       {scholarships.map((user) => {
         return (
             <ListGroup.Item>
-              <h1>Name : {user.scholarshipName}</h1>
-              <h1>Id : {user.id}</h1>
+              <div id="elementbox">
+              <h1>{user.scholarshipName}</h1>
+              <div id="smallbox">
               <a href={user.img}>download</a>
               <Link to="/updateScholarship" state={{ data: user }}>
                 Edit
               </Link>
+              </div>
+              </div>
             </ListGroup.Item>
         );
       })}

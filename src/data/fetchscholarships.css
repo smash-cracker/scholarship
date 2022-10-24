@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#viewallfest {
+    height: 100vh;
+    background: url(./listbg.jpeg);
+    background-size: cover;
+}
+
+.list-group-item  {
+    background: transparent;
+}
+
+#elementbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+#smallbox {
+    display: flex;
+    flex-direction: column;
+}

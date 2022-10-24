@@ -6,7 +6,9 @@ import React, { useContext, useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 import { AuthContext } from '../context/auth_context';
-
+import NavBar from '../components/navbar';
+import './login.css'
+import { Link } from 'react-router-dom';
 const Details = ({inputs})  => {
 
     const [data, setData] = useState({});
@@ -44,18 +46,58 @@ const Details = ({inputs})  => {
       // ..
     });
       }
+
+
       return (
-      <Form onSubmit={handleSignup}>
-        <input type={"text"} onChange={e=>setEmail(e.target.value)}></input>
-        <input type={"password"} onChange={e=>setPassword(e.target.value)}></input>
-        {inputs.map((input) => (
-                  <div className="formInput" key={input.id}>
+        <>
+        <NavBar/>
+    
+        <div className="parent clearfix">
+      <div className="bg-illustration">
+      </div>
+      <div className="login">
+        <div className="container">
+          <h1>
+            Signup here.
+          </h1>
+          <div className="login-form signup-form">
+            <form onSubmit={handleSignup}>
+            <input type={"text"} onChange={e=>setEmail(e.target.value)} placeholder="Email address"></input>
+            <input type={"password"} onChange={e=>setPassword(e.target.value)} placeholder="Password"></input>
+            {inputs.map((input) => (
+                  // <div className="formInput" key={input.id}>
                   <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
-                  </div>
+                  // </div>
               ))}
-        <button type='submit'>Create account</button>
-      </Form>
-    )
+              <button type="submit">SIGN-UP</button>
+              <div className="forget-pass login-link">
+            <a href="#"><Link to={'/login'}>Need to login ?</Link></a>
+          </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+        </>
+      )
+
+      // return (
+        
+      //   <>
+      //   <NavBar/>
+      //   <Form onSubmit={handleSignup}>
+      //   <input type={"text"} onChange={e=>setEmail(e.target.value)}></input>
+      //   <input type={"password"} onChange={e=>setPassword(e.target.value)}></input>
+      //   {inputs.map((input) => (
+      //             <div className="formInput" key={input.id}>
+      //             <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
+      //             </div>
+      //         ))}
+      //   <button type='submit'>Create account</button>
+      // </Form>
+      //   </>
+    // )
   
 }
 

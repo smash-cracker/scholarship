@@ -16,6 +16,7 @@ import New from "./data/new_scholarship";
 import Details from "./authentication/signup";
 import EligibleScholarships from "./data/elible_scholarships";
 import RealEligibleScholarships from "./data/elible_scholarships";
+import About from "./pages/about";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -52,6 +53,7 @@ function App() {
             }
           />
           <Route path="/signup" element={<Details inputs={userDetails} />} />
+          <Route path="/about" element={<About />} />
           <Route
             path="/viewScholarships"
             element={

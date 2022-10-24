@@ -3,52 +3,46 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
+}
+#navheader {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 0 10px;
+    background-color: rgb(255, 255, 255)  ;
+    margin: auto;
+    box-shadow: 0 3px 2px -2px rgba(0,0,0,.2);
+    height: 5vh;
 }
 
-li,a,button {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-a {
-    color: rgb(190, 190, 190);
-}
-
-header {
-    vertical-align: middle;
-    border-radius: 10px;
-    margin: 30px 10px;
-    background-color: rgb(233, 233, 233);
+#headernav {
+    height: 5vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    cursor: pointer;
+#logotext {
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
 }
 
-.nav_links {
-    align-items: center;
+ul {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+nav ul li {
     list-style: none;
-}
-
-.nav_links li {
     display: inline-block;
-    padding: 0px 20px;
+    padding: 10px 20px;
+    
 }
 
-.nav_links li a {
-    transition: all 0.3s ease 0s;
+nav ul li a {
+    color: rgb(148, 148, 148);
 }
 
-.nav_links li a:hover {
+nav ul li a:hover {
     color: black;
-}
-
-.icon {
-    color: black;
-    font-size: 20px;
 }
