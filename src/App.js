@@ -16,13 +16,14 @@ import New from "./data/new_scholarship";
 import Details from "./authentication/signup";
 import EligibleScholarships from "./data/elible_scholarships";
 import RealEligibleScholarships from "./data/elible_scholarships";
-import About from "./pages/about";
+import About from './pages/about';
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to={"/login"} />;
   };
+  
   return (
     <div className="APP">
       <Router>
@@ -33,7 +34,13 @@ function App() {
             element={
               <RequiredAuth>
                 <Home />
-              </RequiredAuth>
+                </RequiredAuth>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+                <About />
             }
           />
           <Route

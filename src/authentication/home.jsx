@@ -12,7 +12,6 @@ export default function Home() {
           “Education is the most powerful weapon you can use to change the world.” —B.B. King
           </pre>
       </div>
-      <Link to="/login">Login page</Link>
     </div>
 
   )

@@ -23,3 +23,12 @@
 pre {
     font-size: 20px;
 }
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+    cursor: pointer;
+}

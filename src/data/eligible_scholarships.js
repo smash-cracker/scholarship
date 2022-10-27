@@ -1,9 +1,13 @@
 import { collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import { AdminContext } from "../context/admin_context";
 import { db } from "../firebase";
 
 function EligibleScholarships() {
+    const { isAdmin } = useContext(AdminContext);
+    console.log(isAdmin)
+
     const [scholarships, setScholarships] = useState([]);
     const collectionRef = collection(db, "scholarships");
 
@@ -21,7 +25,8 @@ function EligibleScholarships() {
                 <h1>Name : {user.scholarshipName}</h1>
                 <h1>Id : {user.id}</h1>
                 <a href={user.img}>download</a>
-                <Link to="/updateScholarship" state={{data:user}}>Edit</Link>
+                <strong>{isAdmin}</strong>
+        <Link to="/updateScholarship" state={{data:user}}>Edit</Link>
             </div>;
         })}
     </div>
