@@ -25,7 +25,7 @@ function Login() {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         console.log(user)
-        naviage("/about");
+        naviage("/");
       })
       .catch((error) => {
         const errorCode = error.code;

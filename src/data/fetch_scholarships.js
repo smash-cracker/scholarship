@@ -13,6 +13,7 @@ function FetchScholarships() {
   const collectionRef = collection(db, "scholarships");
   const { isAdmin } = useContext(AdminContext);
   console.log(isAdmin)
+  
 
 
   useEffect(() => {
@@ -46,23 +47,13 @@ function FetchScholarships() {
                       accusantium.
                   </p>
                   <a href="#" class="blog-post_cta">Download</a>
+                  {isAdmin && <a href="#" class="blog-post_cta">Edit</a>}
+                  
+                  
               </div>
           </div>
   
       </div>  
-            // <ListGroup.Item>
-
-            //   <div id="elementbox">
-            //   <h1>{user.scholarshipName}</h1>
-            //   <div id="smallbox">
-            //   <a href={user.img}>download</a>
-            //   {isAdmin && <Link to="/updateScholarship" state={{ data: user }}>
-            //     Edit
-            //   </Link>}
-              
-            //   </div>
-            //   </div>
-            // </ListGroup.Item>
         );
       })}
        

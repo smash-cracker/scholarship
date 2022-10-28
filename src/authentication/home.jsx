@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { doc, getDoc } from "firebase/firestore";
 import NavBar from '../components/navbar'
+import { AdminContext } from '../context/admin_context';
+import { AuthContext } from '../context/auth_context';
+import { db } from '../firebase';
 import './home.css'
 export default function Home() {
+
+  const{ dispatcher } = useContext(AdminContext);
+  const { currentUser } = useContext(AuthContext);
+    const docRef = doc(db, "users", currentUser.uid);
+    useEffect(() => {
+  const handleLogin = async (e) => {
+    const docSnap = await getDoc(docRef);
+          console.log(docSnap.data().Role)
+          if (docSnap.exists()) {
+            if(docSnap.data().Role==='admin') {
+              console.log("admin dispatch")
+              dispatcher({ type: "ADMIN" });
+            } else {
+              console.log("user dispatch")
+              dispatcher({ type: "NOTADMIN" });
+            }
+            // console.log(docSnap.data().Role)
+          } 
+     };
+     handleLogin();
+    }, []);
+
+
   return (
     <div id='bodybg'>
       <NavBar/>

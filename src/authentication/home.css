@@ -14,7 +14,7 @@
 .mainpagetext {
     font-family: 'Montserrat', sans-serif;
     display: flex;
-    height: 90vh;
+    height: 100vh;
     justify-content: start;
     padding-left: 100px;
     align-items: center;

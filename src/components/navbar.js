@@ -4,11 +4,14 @@ import { signOut } from "firebase/auth";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Popover from "react-bootstrap/Popover";
 import { auth } from "../firebase";
+import { AdminContext } from "../context/admin_context";
 import "./navbar.css";
 import { AuthContext } from "../context/auth_context";
 
 function NavBar() {
   const { currentUser } = useContext(AuthContext);
+  const { isAdmin } = useContext(AdminContext);
+  console.log(isAdmin)
   const naviagte = useNavigate();
 
   function signout() {
@@ -40,10 +43,17 @@ function NavBar() {
               <Link to="/about">About</Link>
             </a>
           </li>
+          <li>
+            <a href="#">
+              {isAdmin && <Link to="/newScholarship">Add Scholarship</Link>}
+               
+            </a>
+          </li>
         </ul>
         <OverlayTrigger
           trigger="click"
           key="bottom"
+          rootClose
           placement="bottom"
           overlay={
             <Popover id={`popover-positioned-bottom`}>
@@ -75,6 +85,7 @@ function NavBar() {
             </Popover>
           }
         >
+
           {currentUser ? (
             <a variant="secondary">Account</a>
           ) : (
