@@ -1,12 +1,11 @@
 import { collection, getDocs } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "../components/navbar";
-import ListGroup from "react-bootstrap/ListGroup";
 import { db } from "../firebase";
 import './fetchscholarships.css'
-import downloadicon from './filedownload.png'
 import { AdminContext } from "../context/admin_context";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faDownload } from '@fortawesome/free-solid-svg-icons'
 
 function FetchScholarships() {
   const [scholarships, setScholarships] = useState([]);
@@ -28,26 +27,31 @@ function FetchScholarships() {
       <NavBar />
     
       {scholarships.map((user) => {
+        var x = user.timestamp.seconds*1000;
+        // console.log(new Date(x).getTime())
+        // console.log(new Date().getTime())
+        var y = new Date().getTime() - new Date(x).getTime()
+        console.log(y/(1000 * 3600 * 24))
         return (
           <div class="container_scholarship">
           <div class="blog-post">
-              <div class="blog-post_img">
-                  <img src="https://www.flaticon.com/free-icon/download_2989976?" alt=""/>
-              </div>
+              {/* <div class="blog-post_img"> */}
+                  {/* <img src="https://www.flaticon.com/free-icon/download_2989976?" alt=""/> */}
+              {/* </div> */}
               <div class="blog-post_info">
                   <div class="blog-post_date">
-                      <span>{user.scholarshipName}</span>
-                      <span>2 days ago</span>
+                      <span className="scholarshipName">{user.scholarshipName}</span>
+                      <span>{Math.floor(y/(1000 * 3600 * 24))} days ago</span>
                   </div>
-                  <h1 class="blog-post_title">General</h1>
+                  <h1 class="blog-post_title">{user.category}</h1>
                   <p class="blog-post_text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat
                       facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid
                       dicta
                       accusantium.
                   </p>
-                  <a href="#" class="blog-post_cta">Download</a>
-                  {isAdmin && <a href="#" class="blog-post_cta">Edit</a>}
+                  <a href="#" class="blog-post_cta"> <a href={user.img} download="file"><FontAwesomeIcon icon={faDownload}></FontAwesomeIcon></a> </a>
+                  {isAdmin && <a href="#" class="blog-post_cta"><FontAwesomeIcon icon={faEdit} /></a>}
                   
                   
               </div>
