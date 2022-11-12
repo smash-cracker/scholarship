@@ -6,12 +6,18 @@ import './fetchscholarships.css'
 import { AdminContext } from "../context/admin_context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom";
 
 function FetchScholarships() {
   const [scholarships, setScholarships] = useState([]);
   const collectionRef = collection(db, "scholarships");
   const { isAdmin } = useContext(AdminContext);
   console.log(isAdmin)
+  const navigate = useNavigate()
+
+  const passData=()=>{
+   
+  }
   
 
 
@@ -51,7 +57,7 @@ function FetchScholarships() {
                       accusantium.
                   </p>
                   <a href="#" class="blog-post_cta"> <a href={user.img} download="file"><FontAwesomeIcon icon={faDownload}></FontAwesomeIcon></a> </a>
-                  {isAdmin && <a href="#" class="blog-post_cta"><FontAwesomeIcon icon={faEdit} /></a>}
+                  {isAdmin && <a class="blog-post_cta" onClick={()=>{ navigate('/updateScholarship', {state:{id:user.id}})}}><FontAwesomeIcon icon={faEdit} /></a>}
                   
                   
               </div>
@@ -67,3 +73,8 @@ function FetchScholarships() {
 }
 
 export default FetchScholarships;
+
+// function UpdateScholarship(props) {
+
+//   const location = useLocation();
+//   console.log("========================",location.state.id)

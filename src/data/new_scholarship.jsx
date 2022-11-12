@@ -66,6 +66,7 @@ const New = ({ inputs, title }) => {
     await setDoc(doc(db, "scholarships", unique_id), {
       ...data,
       timestamp: serverTimestamp(),
+      id:unique_id,
     });
   };
   return (
@@ -104,7 +105,17 @@ const New = ({ inputs, title }) => {
           // <div className="formInput" key={input.id}>
           // <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
           // </div>
-        ))}
+        ))
+        }
+
+<select>
+          <option>General</option>
+          <option>EWS</option>
+          <option>SC</option>
+          <option>ST</option>
+        </select><br></br>
+
+        
 
         <Button
           disabled={percentage != null && percentage < 100}
