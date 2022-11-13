@@ -6,6 +6,7 @@ import { AdminContext } from '../context/admin_context';
 import { AuthContext } from '../context/auth_context';
 import { db } from '../firebase';
 import './home.css'
+import savings from '../assets/savings.svg'
 export default function Home() {
 
   const{ dispatcher } = useContext(AdminContext);
@@ -35,8 +36,12 @@ export default function Home() {
       <NavBar/>
       <div className='mainpagetext'>
           {/* <h1><b>COLLEGE SCHOLARSHIP PORTAL</b></h1>           */}
+          <div className='savingshome'>
+          <img src={savings}></img>
+          </div>
           <pre>
-          “Education is the most powerful weapon you can use to change the world.” —B.B. King
+          “Education is the most powerful weapon <br></br>
+          you can use to change the world.” —B.B. King
           </pre>
       </div>
     </div>

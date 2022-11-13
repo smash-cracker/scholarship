@@ -7,6 +7,7 @@ import { AdminContext } from "../context/admin_context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
+import search from '../assets/search.svg'
 
 function FetchScholarships() {
   const [scholarships, setScholarships] = useState([]);
@@ -15,9 +16,6 @@ function FetchScholarships() {
   console.log(isAdmin)
   const navigate = useNavigate()
 
-  const passData=()=>{
-   
-  }
   
 
 
@@ -31,7 +29,9 @@ function FetchScholarships() {
   return (
     <>
       <NavBar />
-    
+      <div className="searchbg">
+      <img src={search}></img>
+      </div>
       {scholarships.map((user) => {
         var x = user.timestamp.seconds*1000;
         // console.log(new Date(x).getTime())
@@ -51,10 +51,7 @@ function FetchScholarships() {
                   </div>
                   <h1 class="blog-post_title">{user.category}</h1>
                   <p class="blog-post_text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat
-                      facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid
-                      dicta
-                      accusantium.
+                      
                   </p>
                   <a href="#" class="blog-post_cta"> <a href={user.img} download="file"><FontAwesomeIcon icon={faDownload}></FontAwesomeIcon></a> </a>
                   {isAdmin && <a class="blog-post_cta" onClick={()=>{ navigate('/updateScholarship', {state:{id:user.id}})}}><FontAwesomeIcon icon={faEdit} /></a>}

@@ -8,6 +8,8 @@ import { AuthContext } from "../context/auth_context";
 import NavBar from "../components/navbar";
 import "./login.css";
 import dogpaw from "./dogpaw.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
@@ -22,10 +24,12 @@ function Login() {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
+        toast.success("Login Successfully");
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         console.log(user)
         naviage("/");
+        
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -37,7 +41,7 @@ function Login() {
   return (
     <>
       <NavBar />
-
+      <ToastContainer position="top-center" />
       <div className="parent clearfix">
         <div className="bg-illustration"></div>
         <div className="login">

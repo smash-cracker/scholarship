@@ -38,15 +38,16 @@ function NavBar() {
               <Link to="/viewScholarships">Scholarships</Link>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <Link to="/about">About</Link>
-            </a>
-          </li>
+         
           <li>
             <a href="#">
               {isAdmin && <Link to="/newScholarship">Add Scholarship</Link>}
                
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Link to="/about">Contact us</Link>
             </a>
           </li>
         </ul>
