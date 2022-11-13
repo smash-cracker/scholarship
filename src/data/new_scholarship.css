@@ -5,3 +5,15 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.addbg {
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+}
+
+.addbg img {
+    height: 400px;
+    width: 400px;
+}

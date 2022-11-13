@@ -7,6 +7,7 @@ import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Button, Form } from "react-bootstrap";
 import './new_scholarship.css'
+import add from '../assets/add.svg'
 
 const New = ({ inputs, title }) => {
   const [data, setData] = useState({});
@@ -84,6 +85,10 @@ const New = ({ inputs, title }) => {
 
             <button disabled={percentage!=null && percentage<100} type="submit">add scholarship</button>
         </form> */}
+    <div className="addbg">
+      <img src={add} alt="" />
+    </div>
+
     <div className="formcenter">
       <Form onSubmit={handleAdd}>
         <input type={"file"} onChange={(e) => setFile(e.target.files[0])} />
