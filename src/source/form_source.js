@@ -24,6 +24,11 @@ export const userInputs = [
         type: "number",
         placeholder: "Plus two (%)",
     },
+    {
+        id:"link",
+        type: "text",
+        placeholder: "Application link",
+    },
 ];
 
 export const userDetails = [

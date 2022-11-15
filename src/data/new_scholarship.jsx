@@ -96,18 +96,6 @@ const New = ({ inputs, title }) => {
   return (
     <>
       <NavBar />
-      {/* <form onSubmit={handleAdd}>
-            <input type={'file'} onChange={(e)=>setFile(e.target.files[0])}/>
-
-            {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
-                </div>
-            ))}
-            
-
-            <button disabled={percentage!=null && percentage<100} type="submit">add scholarship</button>
-        </form> */}
     <div className="addbg">
       <img src={add} alt="" />
     </div>
@@ -130,9 +118,6 @@ const New = ({ inputs, title }) => {
             />
           </Form.Group>
 
-          // <div className="formInput" key={input.id}>
-          // <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput}/>
-          // </div>
         ))
         }
  <div className='radiobtn' onChange={e => { setGender(e.target.value); console.log(gender) }}>

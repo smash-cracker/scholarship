@@ -19,7 +19,7 @@ function NavBar() {
       .then(() => {
         localStorage.removeItem("user");
         window.location.reload();
-        naviagte("/login");
+        // naviagte("/login");
       })
       .catch((error) => {});
   }

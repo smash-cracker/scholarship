@@ -51,7 +51,7 @@ function FetchScholarships() {
                   </div>
                   <h1 class="blog-post_title">{user.category}</h1>
                   <p class="blog-post_text">
-                      
+                     <a href={user.link} target="_blank">To apply, click here</a> 
                   </p>
                   <a href="#" class="blog-post_cta"> <a href={user.img} download="file"><FontAwesomeIcon icon={faDownload}></FontAwesomeIcon></a> </a>
                   {isAdmin && <a class="blog-post_cta" onClick={()=>{ navigate('/updateScholarship', {state:{id:user.id}})}}><FontAwesomeIcon icon={faEdit} /></a>}

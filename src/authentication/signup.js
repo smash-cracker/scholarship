@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form';
 import { db, storage } from "../firebase";
 import React, { useContext, useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { auth } from '../firebase';
 import { AuthContext } from '../context/auth_context';
 import NavBar from '../components/navbar';
@@ -53,6 +55,16 @@ const Details = ({ inputs }) => {
           caste:caste,
           timestamp: serverTimestamp(),
         });
+        toast('🦄 Successfully created account!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         navigate('/login')
       })
       .catch((error) => {
