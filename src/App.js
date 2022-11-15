@@ -18,6 +18,7 @@ import EligibleScholarships from "./data/elible_scholarships";
 import RealEligibleScholarships from "./data/elible_scholarships";
 import About from './pages/about';
 import Contact from "./pages/about";
+import SupportAdmin from "./SupportAdmin/index"
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -83,6 +84,14 @@ function App() {
             element={
               <RequiredAuth>
                 <RealEligibleScholarships />
+              </RequiredAuth>
+            }
+          />
+          <Route
+            path="/support"
+            element={
+              <RequiredAuth>
+                <SupportAdmin />
               </RequiredAuth>
             }
           />

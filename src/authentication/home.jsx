@@ -7,6 +7,8 @@ import { AuthContext } from '../context/auth_context';
 import { db } from '../firebase';
 import './home.css'
 import savings from '../assets/savings.svg'
+import SupportEngine from '../SupportEngine';
+import Chatbot from '../components/chatbot';
 export default function Home() {
 
   const{ dispatcher } = useContext(AdminContext);
@@ -44,6 +46,8 @@ export default function Home() {
           you can use to change the world.” —B.B. King
           </pre>
       </div>
+      <Chatbot/>
+      {/* <SupportEngine/> */}
     </div>
 
   )

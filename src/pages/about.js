@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, Firestore, getDoc } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +9,9 @@ import { AuthContext } from "../context/auth_context";
 import { setDoc, serverTimestamp } from "firebase/firestore";
 import NavBar from "../components/navbar";
 import { AdminContext } from "../context/admin_context";
+import {useAuthState} from 'react-firebase-hooks/auth'
+import {useCollectionData} from 'react-firebase-hooks/firestore'
+import ChatRoom from "./chatroom";
 
 
 function Contact() {
@@ -18,6 +21,14 @@ function Contact() {
     subject: "",
     message: "",
   });
+
+  const [user] = useAuthState(auth)
+  // // console.log(user.email)
+  // const messageRef = Firestore.collection('feedbacks')
+  // const query = messageRef.orderBy('createdAt').limit(5)
+
+  // const [messages] = useCollectionData(query, {idField:'id'})
+  // console.log(messages);
 
   const { name, email, subject, message } = state;
   const handleSubmit = async (e) => {
@@ -42,6 +53,11 @@ function Contact() {
   return (
     <>
     <NavBar></NavBar>
+    
+    <>
+    {user && <ChatRoom/>}
+
+    </>
     <section className="contact-section">
       <div className="container">
         <ToastContainer position="top-center" />
@@ -185,6 +201,12 @@ function Contact() {
     
   );
 }
+
+
+function chatRoom() {
+  const messageRef = Firestore.collection('feedbacks').doc()
+}
+
 
 export default Contact
 
