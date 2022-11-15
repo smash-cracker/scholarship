@@ -1,15 +1,12 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import React, { useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth_context";
 import NavBar from "../components/navbar";
-import "./login.css";
-import dogpaw from "./dogpaw.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./login.css";
 function Login() {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
@@ -24,12 +21,12 @@ function Login() {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        toast.success("Login Successfully");
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         console.log(user)
+        notify();
         naviage("/");
-        
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -38,10 +35,20 @@ function Login() {
       });
   };
 
+  const notify = () => toast.success('👍 Login successful!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   return (
     <>
       <NavBar />
-      <ToastContainer position="top-center" />
       <div className="parent clearfix">
         <div className="bg-illustration"></div>
         <div className="login">
@@ -78,6 +85,18 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

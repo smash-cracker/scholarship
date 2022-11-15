@@ -9,6 +9,7 @@ root.render(
     <AuthContextProvider>
         <AdminContextProvider>
             <App />
+            
         </AdminContextProvider>
     </AuthContextProvider>
 );

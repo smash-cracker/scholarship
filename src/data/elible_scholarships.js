@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth_context";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
+import NavBar from "../components/navbar";
 
 function RealEligibleScholarships() {
   const { currentUser } = useContext(AuthContext);
@@ -26,6 +27,7 @@ function RealEligibleScholarships() {
   }, []);
   return (
     <div>
+      <NavBar/>
       {scholarships.map((scholarship) => {
         if(parseInt(scholarship.maxAnnualIncome)>parseInt(userData.annualincome)){
             console.log(scholarship);
@@ -39,6 +41,8 @@ function RealEligibleScholarships() {
                   </Link>
                 </div>
               );
+        } else {
+          console.log("Excluded")
         }
       })}
     </div>

@@ -17,9 +17,9 @@ export default function Home() {
     useEffect(() => {
   const handleLogin = async (e) => {
     const docSnap = await getDoc(docRef);
-          console.log(docSnap.data().Role)
+          console.log(docSnap.data().role)
           if (docSnap.exists()) {
-            if(docSnap.data().Role==='admin') {
+            if(docSnap.data().role==='admin') {
               console.log("admin dispatch")
               dispatcher({ type: "ADMIN" });
             } else {

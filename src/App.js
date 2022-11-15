@@ -6,6 +6,8 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./authentication/home";
 import Login from "./authentication/login";
 import { AuthContext } from "./context/auth_context";
@@ -75,14 +77,6 @@ function App() {
             path="/eligibleScholarships"
             element={
               <RequiredAuth>
-                <EligibleScholarships />
-              </RequiredAuth>
-            }
-          />
-          <Route
-            path="/realEligibleScholarships"
-            element={
-              <RequiredAuth>
                 <RealEligibleScholarships />
               </RequiredAuth>
             }
@@ -97,6 +91,18 @@ function App() {
           />
         </Routes>
       </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

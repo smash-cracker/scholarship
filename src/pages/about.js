@@ -23,21 +23,13 @@ function Contact() {
   });
 
   const [user] = useAuthState(auth)
-  // // console.log(user.email)
-  // const messageRef = Firestore.collection('feedbacks')
-  // const query = messageRef.orderBy('createdAt').limit(5)
-
-  // const [messages] = useCollectionData(query, {idField:'id'})
-  // console.log(messages);
 
   const { name, email, subject, message } = state;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !subject || !message) {
-      toast.error("Please provide value in each input field");
+      toast.error("Provide value in all input field");
     } else {
-      // db.child("contacts").push(state);
-      // setState({ name: "", email: "", subject: "", message: "" });
       await setDoc(doc(db, "feedbacks", email), {
         ...state,
         timestamp: serverTimestamp(),
@@ -60,7 +52,7 @@ function Contact() {
     </>
     <section className="contact-section">
       <div className="container">
-        <ToastContainer position="top-center" />
+        {/* <ToastContainer position="top-center" /> */}
         <div className="row justify-content-center">
           <div className="col-md-10">
             <div className="wrapper">

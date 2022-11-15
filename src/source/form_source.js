@@ -15,9 +15,14 @@ export const userInputs = [
         placeholder: "Max annual income",
     },
     {
-        id:"category",
-        type: "text",
-        placeholder: "category",
+        id:"tenth",
+        type: "number",
+        placeholder: "Tenth (%)",
+    },
+    {
+        id:"plusTwo",
+        type: "number",
+        placeholder: "Plus two (%)",
     },
 ];
 

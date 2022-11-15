@@ -2,10 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { AuthContext } from "../context/auth_context";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Button, Form } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './new_scholarship.css'
 import add from '../assets/add.svg'
 
@@ -13,7 +19,10 @@ const New = ({ inputs, title }) => {
   const [data, setData] = useState({});
   const [file, setFile] = useState("");
   const [percentage, setPercentage] = useState(null);
-
+  const [gender, setGender] = useState("")
+  const [year, setYear] = useState("")
+  const [caste, setCaste] = useState("")
+  const naviage = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -67,8 +76,22 @@ const New = ({ inputs, title }) => {
     await setDoc(doc(db, "scholarships", unique_id), {
       ...data,
       timestamp: serverTimestamp(),
+      gender: gender,
+      year: year,
+      caste:caste,
       id:unique_id,
     });
+    toast('🦄 Upload success!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+    naviage("/")
   };
   return (
     <>
@@ -112,13 +135,28 @@ const New = ({ inputs, title }) => {
           // </div>
         ))
         }
+ <div className='radiobtn' onChange={e => { setGender(e.target.value); console.log(gender) }}>
+                  <input type="radio" value="male" name="gender" /> Male
+                  <input type="radio" value="female" name="gender" /> Female
+                  <input type="radio" value="any" name="gender" /> Any
+                </div>
 
-<select>
-          <option>General</option>
-          <option>EWS</option>
-          <option>SC</option>
-          <option>ST</option>
-        </select><br></br>
+                <div className='radiobtn' onChange={e => { setYear(e.target.value); console.log(year) }}>
+                  <input type="radio" value="ug" name="year" /> UG
+                  <input type="radio" value="pg" name="year" /> PG
+                  <input type="radio" value="any" name="year" /> Any
+                </div>
+
+                <DropdownButton alignRight title="Caste" id="dropdown-menu-align-right" onSelect={e => { setCaste(e); console.log(caste) }}>
+                  <Dropdown.Item eventKey="General">General</Dropdown.Item>
+                  <Dropdown.Item eventKey="SC">SC</Dropdown.Item>
+                  <Dropdown.Item eventKey="ST">ST</Dropdown.Item>
+                  <Dropdown.Item eventKey="OBC">OBC</Dropdown.Item>
+                  <Dropdown.Item eventKey="Ezhava">Ezhava</Dropdown.Item>
+                  <Dropdown.Item eventKey="any">Any</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
+                </DropdownButton>
 
         
 
