@@ -8,6 +8,7 @@ import { AdminContext } from "../context/admin_context";
 import "./navbar.css";
 import { AuthContext } from "../context/auth_context";
 
+
 function NavBar() {
   const { currentUser } = useContext(AuthContext);
   const { isAdmin } = useContext(AdminContext);
@@ -38,19 +39,20 @@ function NavBar() {
               <Link to="/viewScholarships">Scholarships</Link>
             </a>
           </li>
-         
-          
-          <li>
-            <a href="#">
-              <Link to="/about">Contact us</Link>
-            </a>
-          </li>
-          <li>
+         {isAdmin && <li>
             <a href="#">
               {isAdmin && <Link to="/newScholarship">Add Scholarship</Link>}
                
             </a>
-          </li>
+          </li> }
+          
+           {<li>
+            <a href="#">
+              { <Link to="/about">Contact us</Link>}
+            </a>
+          </li>}
+         
+ 
         </ul>
         <OverlayTrigger
           trigger="click"
@@ -66,7 +68,7 @@ function NavBar() {
                   <br />
                   <hr />
                 </>
-                <>
+                {!isAdmin && <>
                   {currentUser && (
                     <Link to="/eligibleScholarships">
                       <strong>Eligible scholarships</strong>
@@ -74,7 +76,7 @@ function NavBar() {
                   )}
                   <br />
                   <hr />
-                </>
+                </>}
                 <>
                   {currentUser && (
                     <a onClick={signout}>

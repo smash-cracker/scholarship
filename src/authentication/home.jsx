@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { doc, getDoc } from "firebase/firestore";
 import NavBar from '../components/navbar'
 import { AdminContext } from '../context/admin_context';
@@ -7,7 +6,6 @@ import { AuthContext } from '../context/auth_context';
 import { db } from '../firebase';
 import './home.css'
 import savings from '../assets/savings.svg'
-import SupportEngine from '../SupportEngine';
 import Chatbot from '../components/chatbot';
 export default function Home() {
 

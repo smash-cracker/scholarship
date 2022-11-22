@@ -8,11 +8,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
 import search from '../assets/search.svg'
+import { doc, getDoc } from "firebase/firestore";
+import { AuthContext } from '../context/auth_context';
 
 function FetchScholarships() {
   const [scholarships, setScholarships] = useState([]);
   const collectionRef = collection(db, "scholarships");
   const { isAdmin } = useContext(AdminContext);
+
+  const{ dispatcher } = useContext(AdminContext);
+  const { currentUser } = useContext(AuthContext);
+    const docRef = doc(db, "users", currentUser.uid);
   console.log(isAdmin)
   const navigate = useNavigate()
 
@@ -21,6 +27,20 @@ function FetchScholarships() {
 
   useEffect(() => {
     const getScholarships = async () => {
+
+      const docSnap = await getDoc(docRef);
+          console.log(docSnap.data().role)
+          if (docSnap.exists()) {
+            if(docSnap.data().role==='admin') {
+              console.log("admin dispatch")
+              dispatcher({ type: "ADMIN" });
+            } else {
+              console.log("user dispatch")
+              dispatcher({ type: "NOTADMIN" });
+            }
+            // console.log(docSnap.data().Role)
+          } 
+
       const data = await getDocs(collectionRef);
       setScholarships(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };

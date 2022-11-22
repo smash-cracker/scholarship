@@ -21,9 +21,9 @@ function Contact() {
     subject: "",
     message: "",
   });
-
+  const { isAdmin } = useContext(AdminContext);
   const [user] = useAuthState(auth)
-
+  console.log(user)
   const { name, email, subject, message } = state;
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ function Contact() {
     {user && <ChatRoom/>}
 
     </>
-    <section className="contact-section">
+    {!isAdmin && <section className="contact-section">
       <div className="container">
         {/* <ToastContainer position="top-center" /> */}
         <div className="row justify-content-center">
@@ -188,7 +188,7 @@ function Contact() {
           </div>
         </div>
       </div>
-    </section>
+    </section>}
     </>
     
   );
